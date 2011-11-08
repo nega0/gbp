@@ -222,7 +222,8 @@ if (!$?) {
     }
     
     if ($binary eq "") {
-	$link = `$compiler $openmp -v ftest2.f 2>&1 && rm -f a.out a.exe`;
+   ## this fixes an issue with gfortran >= v4.6
+	$link = `($compiler $openmp -v ftest2.f 2>&1 | sed '/^Driving/ s/-l /-l/g') && rm -f a.out a.exe`;
     }
 }
     
