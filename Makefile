@@ -181,17 +181,17 @@ endif
 
 lapack-3.1.1.tgz :
 ifndef NOFORTRAN
-	-wget http://www.netlib.org/lapack/lapack-3.1.1.tgz
+	-curl -O http://www.netlib.org/lapack/lapack-3.1.1.tgz
 endif
 
 large.tgz : 
 ifndef NOFORTRAN
-	-wget http://www.netlib.org/lapack/timing/large.tgz
+	-curl -O http://www.netlib.org/lapack/timing/large.tgz
 endif
 
 timing.tgz :
 ifndef NOFORTRAN
-	-wget http://www.netlib.org/lapack/timing/timing.tgz
+	-curl -O http://www.netlib.org/lapack/timing/timing.tgz
 endif
 
 lapack-timing : lapack-3.1.1 large.tgz timing.tgz
