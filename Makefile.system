@@ -608,7 +608,11 @@ PATCH	= patch
 GREP	= grep
 endif
 
+ifeq ($(OSNAME), Darwin)
+MD5SUM   = md5 -r
+else
 MD5SUM	= md5sum
+endif
 AWK	= awk
 
 REVISION = -r$(VERSION)
