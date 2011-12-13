@@ -239,8 +239,17 @@ print CONFFILE "#define FUNDERSCORE\t$need_fu\n" if $need_fu ne "";
 
 if ($os eq "LINUX") {
     
-    @pthread = split(/\s+/, `nm /lib/libpthread.so* | grep _pthread_create`);
-    
+   if (-f "/lib/libpthread.so") {
+      @pthread = split(/\s+/, `nm /lib/libpthread.so* | grep _pthread_create`);
+   } else {
+      if ($binary == 64) {
+         @pthread = split(/\s+/, `nm /lib/x86_64-linux-gnu/libpthread.so* | grep _pthread_create`);
+      }
+      if ($binary == 32) {
+         @pthread = split(/\s+/, `nm /lib/i386-linux-gnu/libpthread.so* | grep _pthread_create`);
+      }
+   }
+
     if ($pthread[2] ne "") {
 	print CONFFILE "#define PTHREAD_CREATE_FUNC	$pthread[2]\n";
     } else {
