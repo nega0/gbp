@@ -209,8 +209,8 @@ $linker_a = "";
 
 }
 
-open(MAKEFILE, "> $makefile") || die "Can't create $makefile";
-open(CONFFILE, "> $config"  ) || die "Can't create $config";
+open(MAKEFILE, ">> $makefile") || die "Can't create $makefile";
+open(CONFFILE, ">> $config"  ) || die "Can't create $config";
 
 # print $data, "\n";
 

@@ -19,12 +19,15 @@ all: getarch_2nd
 	./getarch_2nd  0 >> $(TARGET_MAKE)
 	./getarch_2nd  1 >> $(TARGET_CONF)
 
-config.h : c_check f_check getarch
+config.h : c_check run_f_check getarch
 	perl ./c_check $(TARGET_MAKE) $(TARGET_CONF) $(CC)
-	perl ./f_check $(TARGET_MAKE) $(TARGET_CONF) $(FC)
+#	perl ./f_check $(TARGET_MAKE) $(TARGET_CONF) $(FC)
 	./getarch 0 >> $(TARGET_MAKE)
 	./getarch 1 >> $(TARGET_CONF)
 
+.PHONY : run_f_check
+run_f_check : f_check
+	perl ./f_check $(TARGET_MAKE) $(TARGET_CONF) $(FC)
 
 getarch : getarch.c cpuid.S dummy $(CPUIDEMU)
 	$(HOSTCC) $(CFLAGS) $(EXFLAGS) -o $(@F) getarch.c cpuid.S $(CPUIDEMU)

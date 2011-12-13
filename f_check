@@ -44,6 +44,11 @@ if ($compiler eq "") {
 }
 
 if ($compiler eq "") {
+die "
+***  Whoa! Can't find a fortran compiler!
+***  Cowardly refusing to continue...
+
+";
 
     $nofortran = 1;
     $compiler = "g77";
@@ -284,8 +289,8 @@ if ($link ne "") {
 
 }
 
-open(MAKEFILE, ">> $makefile") || die "Can't append $makefile";
-open(CONFFILE, ">> $config"  ) || die "Can't append $config";
+open(MAKEFILE, "> $makefile") || die "Can't append $makefile";
+open(CONFFILE, "> $config"  ) || die "Can't append $config";
 
 print MAKEFILE "F_COMPILER=$vendor\n";
 print MAKEFILE "FC=$compiler\n";
