@@ -1,0 +1,17 @@
+# build products
+*.o
+*.a
+*.so
+libgoto2.*
+Makefile.conf
+config.h
+exports/linktest.c
+exports/linux.def
+lapack-3.1.1.tgz
+getarch
+getarch_2nd
+
+# backup files
+*~
+\#*
+.#*
