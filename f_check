@@ -211,17 +211,17 @@ if (!$?) {
     $openmp = "" if $ENV{USE_OPENMP} != 1;
     
     if ($binary == 32) {
-	$link = `$compiler $openmp -m32 -v ftest2.f 2>&1 && rm -f a.out a.exe`;
+	$link = `$compiler $openmp -m32 -v ftest2.f 2>&1 | sed '/^Driving/ s/-l /-l/g') && rm -f a.out a.exe`;
 	if ($?) {
-	    $link = `$compiler $openmp -q32 -v ftest2.f 2>&1 && rm -f a.out a.exe`;
+	    $link = `$compiler $openmp -q32 -v ftest2.f 2>&1 | sed '/^Driving/ s/-l /-l/g') && rm -f a.out a.exe`;
 	}
 	$binary = "" if ($?);
     }
     
     if ($binary == 64) {
-	$link = `$compiler $openmp -m64 -v ftest2.f 2>&1 && rm -f a.out a.exe`;
+	$link = `$compiler $openmp -m64 -v ftest2.f 2>&1 | sed '/^Driving/ s/-l /-l/g') && rm -f a.out a.exe`;
 	if ($?) {
-	    $link = `$compiler $openmp -q64 -v ftest2.f 2>&1 && rm -f a.out a.exe`;
+	    $link = `$compiler $openmp -q64 -v ftest2.f 2>&1 | sed '/^Driving/ s/-l /-l/g') && rm -f a.out a.exe`;
 	}
 	$binary = "" if ($?);
     }
